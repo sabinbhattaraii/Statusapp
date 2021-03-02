@@ -5,4 +5,4 @@ class StatusMessageModelForm(ModelForm):
 
     class Meta:
         model = StatusMessage
-        fields = ['status','user']
+        fields = ['status']
