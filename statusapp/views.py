@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from django.views.generic import CreateView,DeleteView
+from django.views.generic import CreateView,DeleteView,UpdateView
 from .forms import StatusMessageModelForm
 from .models import StatusMessage
 
@@ -39,3 +39,19 @@ class StatusMessageDeleteView(DeleteView):
 
     def get(self,request,*args,**kwargs):
         return self.post(request,*args,**kwargs)
+
+
+class StatusMessageUpdateView(UpdateView):
+    form_class = StatusMessageModelForm
+    template_class = 'statusapp/update.html'
+    success_url = '/accounts/profile'
+
+    def get_queryset(self):
+        return StatusMessage.objects.filter(
+            user = self.request.user
+        )
+
+    def get(self,request,*args,**kwargs):
+        return self.post(request,*args,**kwargs)
+
+    

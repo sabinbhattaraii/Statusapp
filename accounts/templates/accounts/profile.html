@@ -20,7 +20,8 @@ Bio: {{ request.user.get_bio }}
     Created At: <b>{{ msg.created_at }}</b>
 
     {% if msg.user == request.user %}
-        <a href="{% url 'statusapp:delete' msg.id %}">Delete</a>
+        <a href="{% url 'statusapp:delete' msg.id %}">Delete</a>|
+        <a href="{% url 'statusapp:update' msg.id %}">Update</a>
     {% endif %}
     <hr>
 {% endfor %}
