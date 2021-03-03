@@ -40,10 +40,10 @@ class StatusMessageDeleteView(DeleteView):
     def get(self,request,*args,**kwargs):
         return self.post(request,*args,**kwargs)
 
-
+@method_decorator(login_required,name='dispatch')
 class StatusMessageUpdateView(UpdateView):
     form_class = StatusMessageModelForm
-    template_class = 'statusapp/update.html'
+    template_name = 'statusapp/update.html'
     success_url = '/accounts/profile'
 
     def get_queryset(self):
@@ -51,7 +51,7 @@ class StatusMessageUpdateView(UpdateView):
             user = self.request.user
         )
 
-    def get(self,request,*args,**kwargs):
-        return self.post(request,*args,**kwargs)
+    '''def get(self,request,*args,**kwargs):
+        return self.post(request,*args,**kwargs)'''
 
     
